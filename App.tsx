@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ReactMarkdown from 'react-markdown';
 import { Button } from './components/Button';
 import { ServiceCard } from './components/ServiceCard';
 import { 
@@ -19,7 +20,7 @@ import {
 } from 'lucide-react';
 
 const App: React.FC = () => {
-  const WHATSAPP_LINK = "https://wa.me/5533984022885"; 
+  const WHATSAPP_LINK = "https://wa.me/5533984022885?text=Olá%2C%20estou%20vindo%20do%20site%20Previdenci%C3%A1rio%20e%20quero%20falar%20com%20um%20Advogado."; 
   const [selectedService, setSelectedService] = useState<null | { title: string, description: string }>(null);
 
   const handleCta = () => {
@@ -36,27 +37,31 @@ const App: React.FC = () => {
   const services = [
     {
       title: "BPC-LOAS Idoso e/ou deficiente",
-      description: "O BPC-LOAS é um benefício pago pelo INSS no valor de 1 salário-mínimo por mês para idosos com 65 anos ou mais e pessoas com deficiência ou doença grave, de qualquer idade, que não têm condições de se sustentar. Não é aposentadoria e não precisa pagar o INSS para ter direito."
+      description: "O **BPC-LOAS** é um benefício pago pelo INSS no valor de **1 salário-mínimo** por mês para idosos com 65 anos ou mais e pessoas com deficiência ou doença grave, de qualquer idade, que não têm condições de se sustentar. **Não precisa pagar o INSS para ter direito.**\n\nAlém disso, é necessário estar inscrito no **CadÚnico** e que, ao dividir a renda total da família pelo número de integrantes, o resultado seja de **até meio salário mínimo por pessoa**.\n\nDeficientes ou portadores de doenças graves precisam de **LAUDO MÉDICO** que comprove sua incapacidade."
     },
     {
       title: "BPC-LOAS para autistas",
-      description: "O BPC-LOAS para autistas é um benefício pago pelo INSS no valor de 1 salário mínimo por mês para pessoas que vivem em família de baixa renda, inclusive crianças, que possuam Transtorno do Espectro Autista (TEA). Não precisa pagar o INSS para ter direito."
+      description: "O **BPC-LOAS para autistas** é um benefício pago pelo INSS no valor de **1 salário mínimo** por mês. **Não precisa pagar o INSS para ter direito.**\n\nÉ necessário ter **LAUDO MÉDICO** que comprove o autismo (Transtorno do Espectro Autista - TEA) e as dificuldades para as atividades do dia a dia.\n\nAlém disso, é necessário estar inscrito no **CadÚnico** e que, ao dividir a renda total da família pelo número de integrantes, o resultado seja de **até meio salário mínimo por pessoa**."
     },
     {
-      title: "Aposentadoria Urbana, Rural e Híbrida",
-      description: "Análise completa do tempo de contribuição para homens e mulheres. Trabalhadores rurais podem se aposentar mais cedo (60 anos homens, 55 anos mulheres) com 15 anos de campo comprovados."
+      title: "Aposentadoria por idade urbana",
+      description: "Essa aposentadoria é para quem trabalhou e pagou o INSS por vários anos. Pelas regras atuais, o **homem se aposenta aos 65 anos** com, no mínimo, **20 anos de contribuição** e a **mulher aos 62 anos** com **15 anos de contribuição**."
     },
     {
-      title: "Auxílio Doença e Invalidez",
-      description: "Para quem está temporária ou permanentemente incapacitado para o trabalho. Combatemos negativas indevidas do INSS para garantir seu sustento durante a enfermidade."
+      title: "Aposentadoria rural/híbrida",
+      description: "Mesmo que nunca tenha trabalhado com carteira assinada ou pagado o INSS, o **trabalhador rural** tem direito de aposentar aos **60 anos se for homem** ou **55 anos se for mulher**, desde que comprove pelo menos **15 anos de trabalho na roça**.\n\nNa **aposentadoria híbrida**, é possível juntar o tempo de trabalho na roça com o tempo de trabalho com carteira assinada na cidade. Nesse caso, para os **homens**, é necessário ter pelo menos **20 anos de trabalho e 65 anos de idade** e para as **mulheres, 15 anos de trabalho e 62 anos de idade**."
     },
     {
-      title: "Pensão por Morte",
-      description: "Benefício pago à família do segurado falecido. Orientação completa para viúvos(as), companheiros(as) e filhos dependentes garantirem o benefício rapidamente."
+      title: "Auxílio doença / Aposentadoria por invalidez",
+      description: "Possui **laudo médico** que comprove sua incapacidade para trabalhar? Você pode ter direito ao **auxílio doença**, se a incapacidade for passageira ou à **aposentadoria por invalidez**, se a incapacidade for permanente.\n\nÉ necessário ser segurado do INSS e ter cumprido a **carência mínima** (tempo mínimo de contribuição), salvo doenças graves que dispensam carência.\n\nNa maioria dos casos, o INSS nega esses benefícios indevidamente. **Não desista do seu direito.**"
+    },
+    {
+      title: "Pensão por morte",
+      description: "A **pensão por morte** é um benefício do INSS pago para os familiares de quem faleceu. Têm direito o marido, a esposa ou companheiro(a) e os filhos menores de 21 anos ou que sejam incapazes.\n\nÉ necessário que o falecido fosse **segurado do INSS**, ou seja, estava contribuindo ou era aposentado ou estava dentro do período de graça, em que mantinha a qualidade de segurado.\n\nTambém possuem esse direito os familiares de **trabalhador (a) rural** que faleceu e nunca teve carteira assinada e nem pagou o INSS."
     },
     {
       title: "Demais serviços: Entre em contato",
-      description: "Nosso escritório é especializado em Direito Previdenciário e oferece soluções completas para cuidar do seu benefício no INSS. Se não encontrou exatamente o que precisa ou ainda ficou com alguma dúvida, fale com a gente. Vamos analisar o seu caso com atenção e te orientar da melhor forma possível."
+      description: "Nosso escritório é especializado em **Direito Previdenciário** e oferece soluções completas para cuidar do seu benefício no INSS. Se não encontrou exatamente o que precisa ou ainda ficou com alguma dúvida, fale com a gente. Vamos analisar o seu caso com atenção e te orientar da melhor forma possível."
     }
   ];
 
@@ -103,7 +108,7 @@ const App: React.FC = () => {
 
           <div className="max-w-4xl">
             <h1 className="text-3xl md:text-7xl font-bold text-white leading-tight mb-6 md:mb-8 font-serif">
-              Garanta o seu melhor benefício ou aposentadoria junto ao INSS.
+              Garanta o seu melhor benefício ou aposentadoria junto ao INSS
             </h1>
             <p className="text-lg md:text-2xl text-gray-300 mb-8 md:mb-12 leading-relaxed max-w-2xl mx-auto">
               Fale com nossos especialistas em aposentadorias e benefícios do INSS.
@@ -179,9 +184,9 @@ const App: React.FC = () => {
                 <h3 className="text-2xl md:text-3xl font-bold text-[#1a3241] mb-6 font-serif border-b-4 border-[#F2CA61] pb-4 inline-block">
                   {selectedService.title}
                 </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-10 whitespace-pre-line">
-                  {selectedService.description}
-                </p>
+                <div className="markdown-body text-base md:text-lg text-gray-700 leading-relaxed mb-10 whitespace-pre-line">
+                  <ReactMarkdown>{selectedService.description}</ReactMarkdown>
+                </div>
                 <div className="flex justify-center">
                   <Button onClick={handleCta} variant="whatsapp" className="h-14 px-10 text-lg bg-[#25D366] hover:bg-[#20bd5a]">
                     <svg viewBox="0 0 24 24" className="w-6 h-6 mr-2 fill-current">
@@ -320,24 +325,37 @@ const App: React.FC = () => {
       <footer className="bg-[#1a3241] text-white py-12 md:py-20 border-t border-white/10">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12 md:gap-16 mb-12 md:mb-16">
-            {/* Left Side: Social Media */}
-            <div className="flex flex-col items-center gap-6 md:gap-8">
-              <div className="flex gap-4 md:gap-6">
-                <a href="#" className="w-12 h-12 md:w-16 md:h-16 bg-[#F2CA61] rounded-full flex items-center justify-center text-[#1a3241] hover:scale-110 transition-transform shadow-lg">
-                  <Facebook className="w-6 h-6 md:w-8 md:h-8 fill-current" />
+            {/* Left Side: Logo & Instagram */}
+            <div className="flex flex-col items-center md:items-start gap-8">
+              <img 
+                src="https://manoeljuniorpro.com.br/wp-content/uploads/2026/02/WhatsApp_Image_2026-02-13_at_11.13.03-removebg-preview.png" 
+                alt="Pinho Barroso Advogados Logo" 
+                className="h-24 md:h-32 object-contain"
+              />
+              <div className="flex flex-col gap-4">
+                <a 
+                  href="https://www.instagram.com/advogadodanielbarroso" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="flex items-center gap-3 text-[#F2CA61] hover:text-white transition-colors group"
+                >
+                  <div className="w-10 h-10 bg-[#F2CA61] rounded-full flex items-center justify-center text-[#1a3241] group-hover:scale-110 transition-transform shadow-lg">
+                    <Instagram className="w-5 h-5" />
+                  </div>
+                  <span className="font-bold">@advogadodanielbarroso</span>
                 </a>
-                <a href="https://www.instagram.com/advogadodanielbarroso" target="_blank" rel="noreferrer" className="w-12 h-12 md:w-16 md:h-16 bg-[#F2CA61] rounded-full flex items-center justify-center text-[#1a3241] hover:scale-110 transition-transform shadow-lg">
-                  <Instagram className="w-6 h-6 md:w-8 md:h-8" />
-                </a>
-                <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer" className="w-12 h-12 md:w-16 md:h-16 bg-[#F2CA61] rounded-full flex items-center justify-center text-[#1a3241] hover:scale-110 transition-transform shadow-lg">
-                  <svg viewBox="0 0 24 24" className="w-6 h-6 md:w-8 md:h-8 fill-current">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                  </svg>
+                <a 
+                  href="https://www.instagram.com/advogadaelisapinho" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="flex items-center gap-3 text-[#F2CA61] hover:text-white transition-colors group"
+                >
+                  <div className="w-10 h-10 bg-[#F2CA61] rounded-full flex items-center justify-center text-[#1a3241] group-hover:scale-110 transition-transform shadow-lg">
+                    <Instagram className="w-5 h-5" />
+                  </div>
+                  <span className="font-bold">@advogadaelisapinho</span>
                 </a>
               </div>
-              <p className="text-lg md:text-xl font-bold font-serif tracking-wide text-white text-center">
-                Nossas Mídias Pinho Barroso Advogados
-              </p>
             </div>
 
             {/* Right Side: Contact Info */}
@@ -350,17 +368,24 @@ const App: React.FC = () => {
               </div>
               <div className="flex items-center gap-4 md:gap-6">
                 <Phone className="w-6 h-6 md:w-10 md:h-10 text-[#F2CA61] flex-shrink-0" />
-                <span className="text-base md:text-lg font-bold text-white">(33) 984022885</span>
+                <a href="tel:+5533984022885" className="text-base md:text-lg font-bold text-white hover:text-[#F2CA61] transition-colors">(33) 984022885</a>
               </div>
               <div className="flex items-center gap-4 md:gap-6">
-                <svg viewBox="0 0 24 24" className="w-6 h-6 md:w-10 md:h-10 fill-[#F2CA61] flex-shrink-0">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                <span className="text-base md:text-lg font-bold text-white">+55 33 98402-2885</span>
+                <a 
+                  href={WHATSAPP_LINK} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="flex items-center gap-4 md:gap-6 hover:opacity-80 transition-opacity"
+                >
+                  <svg viewBox="0 0 24 24" className="w-6 h-6 md:w-10 md:h-10 fill-[#F2CA61] flex-shrink-0">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  <span className="text-base md:text-lg font-bold text-white">+55 33 98402-2885</span>
+                </a>
               </div>
               <div className="flex items-center gap-4 md:gap-6">
                 <Mail className="w-6 h-6 md:w-10 md:h-10 text-[#F2CA61] flex-shrink-0" />
-                <span className="text-base md:text-lg text-white">pinhobarrosoadvogados@gmail.com</span>
+                <a href="mailto:pinhobarrosoadvogados@gmail.com" className="text-base md:text-lg text-white hover:text-[#F2CA61] transition-colors">pinhobarrosoadvogados@gmail.com</a>
               </div>
             </div>
           </div>
